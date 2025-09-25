@@ -26,9 +26,16 @@ SECRET_KEY = 'django-insecure-&_s*$qckv56yt1*#81snb*k$dsdxhenhmshp-j+yby0zamj(2!
 DEBUG = True
 
 # Para permitir acesso pela VPS, adicione o IP da sua VPS ou domínio
-# Exemplo: ALLOWED_HOSTS = ['192.168.1.100', 'seudominio.com', 'www.seudominio.com']
-# Para desenvolvimento temporário, pode usar ['*'] mas NÃO recomendado para produção
-ALLOWED_HOSTS = ['*']  # TEMPORÁRIO - substitua pelo IP/domínio da sua VPS
+# SUBSTITUA pelos seus domínios/IPs reais:
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '0.0.0.0',
+    # Adicione aqui seu domínio: 'seudominio.com', 'www.seudominio.com'
+    'http://teste-django-y3jmf1-2636b9-195-35-43-37.traefik.me/',
+    # Adicione aqui o IP da sua VPS: 'XXX.XXX.XXX.XXX'
+    '*'  # TEMPORÁRIO - remova em produção
+]
 
 
 # Application definition
@@ -131,3 +138,35 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Configurações de logging para debug
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO',
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'django.request': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+    },
+}
+
+# Configurações para quando estiver atrás de proxy reverso
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
+USE_X_FORWARDED_PORT = True
