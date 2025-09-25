@@ -31,10 +31,9 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     '0.0.0.0',
-    # Adicione aqui seu domínio: 'seudominio.com', 'www.seudominio.com'
-    'http://teste-django-y3jmf1-2636b9-195-35-43-37.traefik.me/',
-    # Adicione aqui o IP da sua VPS: 'XXX.XXX.XXX.XXX'
-    '*'  # TEMPORÁRIO - remova em produção
+    'teste-django-y3jmf1-2636b9-195-35-43-37.traefik.me',  # Seu domínio Traefik
+    '195.35.43.37',  # IP da VPS extraído do domínio
+    # '*'  # REMOVIDO para produção - usar apenas domínios específicos
 ]
 
 
