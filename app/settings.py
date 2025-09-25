@@ -25,7 +25,10 @@ SECRET_KEY = 'django-insecure-&_s*$qckv56yt1*#81snb*k$dsdxhenhmshp-j+yby0zamj(2!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# Para permitir acesso pela VPS, adicione o IP da sua VPS ou domínio
+# Exemplo: ALLOWED_HOSTS = ['192.168.1.100', 'seudominio.com', 'www.seudominio.com']
+# Para desenvolvimento temporário, pode usar ['*'] mas NÃO recomendado para produção
+ALLOWED_HOSTS = ['*']  # TEMPORÁRIO - substitua pelo IP/domínio da sua VPS
 
 
 # Application definition
@@ -41,6 +44,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Para servir arquivos estáticos
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -115,6 +119,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# Configurações para produção - arquivos estáticos
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Configurações de mídia (caso use uploads)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
