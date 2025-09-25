@@ -25,17 +25,7 @@ SECRET_KEY = 'django-insecure-&_s*$qckv56yt1*#81snb*k$dsdxhenhmshp-j+yby0zamj(2!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# Para permitir acesso pela VPS, adicione o IP da sua VPS ou domínio
-# SUBSTITUA pelos seus domínios/IPs reais:
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    '0.0.0.0',
-    'teste-django-y3jmf1-2636b9-195-35-43-37.traefik.me',  # Seu domínio Traefik
-    '195.35.43.37',  # IP da VPS extraído do domínio
-    # '*'  # REMOVIDO para produção - usar apenas domínios específicos
-]
-
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
